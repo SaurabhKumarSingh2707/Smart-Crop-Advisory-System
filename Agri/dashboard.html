@@ -29,6 +29,78 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
   />
+  
+  <!-- Animate.css for SweetAlert2 animations -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  
+  <!-- Enhanced Dashboard Animations -->
+  <style>
+    /* Import custom animations from index */
+    .swal2-popup.swal2-show.enhanced-bounce {
+      animation: enhancedBounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .swal2-popup.swal2-show.enhanced-slide-down {
+      animation: enhancedSlideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .swal2-popup.swal2-hide.enhanced-zoom-out {
+      animation: enhancedZoomOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .swal2-popup.swal2-show.enhanced-shake {
+      animation: enhancedShake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+    
+    /* Keyframes */
+    @keyframes enhancedBounceIn {
+      0% { opacity: 0; transform: scale(0.3) translateY(-100px) rotate(-10deg); }
+      50% { opacity: 0.9; transform: scale(1.05) translateY(10px) rotate(2deg); }
+      80% { opacity: 1; transform: scale(0.95) translateY(-5px) rotate(-1deg); }
+      100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+    }
+    
+    @keyframes enhancedSlideDown {
+      0% { opacity: 0; transform: translateY(-100px) scale(0.8) rotateX(-90deg); }
+      60% { opacity: 0.8; transform: translateY(20px) scale(1.02) rotateX(5deg); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+    }
+    
+    @keyframes enhancedZoomOut {
+      0% { opacity: 1; transform: scale(1) rotate(0deg); }
+      50% { opacity: 0.5; transform: scale(1.1) rotate(5deg); }
+      100% { opacity: 0; transform: scale(0) rotate(360deg); }
+    }
+    
+    @keyframes enhancedShake {
+      0%, 100% { transform: translateX(0) scale(1); }
+      10% { transform: translateX(-10px) scale(1.02) rotate(-1deg); }
+      20% { transform: translateX(10px) scale(0.98) rotate(1deg); }
+      30% { transform: translateX(-8px) scale(1.01) rotate(-0.5deg); }
+      40% { transform: translateX(8px) scale(0.99) rotate(0.5deg); }
+      50% { transform: translateX(-6px) scale(1) rotate(0deg); }
+      60% { transform: translateX(6px) scale(1.01) rotate(-0.2deg); }
+      70% { transform: translateX(-4px) scale(0.99) rotate(0.2deg); }
+      80% { transform: translateX(4px) scale(1) rotate(0deg); }
+      90% { transform: translateX(-2px) scale(1); }
+    }
+    
+    /* Enhanced buttons */
+    .swal2-styled.swal2-confirm {
+      background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4) !important;
+    }
+    
+    .swal2-styled.swal2-confirm:hover {
+      background: linear-gradient(135deg, #16a34a, #15803d) !important;
+      transform: translateY(-2px) scale(1.05) !important;
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6) !important;
+    }
+  </style>
 
   <!-- Modern Dashboard Styles -->
   <style>
@@ -730,24 +802,67 @@
     });
 </script>
 
-<!--   <script src="auth.js"></script> -->
-  <script>
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', () => {
-          if (!requireAuth()) {
-            return;
-          }
-          const currentUser = window.authManager.getCurrentUser();
-          if (currentUser) {
-            // Update header to show user name
-            const headerTitle = document.querySelector('header h2');
-            if (headerTitle) {
-              headerTitle.textContent = `Welcome to AgriTech Frontend, ${currentUser.fullname}!`;
-            }
-          }
+<!-- Firebase Authentication -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBzgNpV6aFyjtDX6Ig9rgP8x2w647jWN5M",
+        authDomain: "smart-crop-advisory-f3913.firebaseapp.com",
+        projectId: "smart-crop-advisory-f3913",
+        storageBucket: "smart-crop-advisory-f3913.firebasestorage.app",
+        messagingSenderId: "231721730375",
+        appId: "1:231721730375:web:a07c0b372e8b99ed27cc62"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Check authentication on page load
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // User is not logged in, redirect to login page
+        Swal.fire({
+          title: '🔒 Access Denied',
+          html: '<p style="font-size: 16px; color: #6b7280; margin: 15px 0;">You need to be logged in to access the dashboard. Please authenticate first! 🛡️</p>',
+          icon: 'warning',
+          confirmButtonText: '🔑 Go to Login',
+          confirmButtonColor: '#22c55e',
+          allowOutsideClick: false,
+          customClass: {
+            popup: 'enhanced-slide-down',
+            confirmButton: 'enhanced-button'
+          },
+          showClass: {
+            backdrop: 'swal2-backdrop-show'
+          },
+          hideClass: {
+            backdrop: 'swal2-backdrop-hide',
+            popup: 'enhanced-zoom-out'
+          },
+          backdrop: true,
+          focusConfirm: true
+        }).then(() => {
+          window.location.href = 'login.html';
         });
+        return;
+      }
+      
+      // User is logged in, update the welcome message
+      const headerTitle = document.querySelector('header h2');
+      if (headerTitle && user.email) {
+        headerTitle.textContent = `Welcome to AgriTech Frontend, ${user.email}!`;
+      }
+    });
+
+    // Make auth available globally for logout function
+    window.firebaseAuth = auth;
+  </script>
+  <script>
         
-        function showLogoutConfirmation() {
+        async function showLogoutConfirmation() {
             Swal.fire({
             title: 'Confirm Logout',
             text: 'Are you sure you want to logout?',
@@ -757,23 +872,34 @@
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, logout',
             cancelButtonText: 'No'
-            }).then((result) => {
+            }).then(async (result) => {
             if (result.isConfirmed) {
-                // Clear any stored user data/session
-                localStorage.removeItem('user');
-                sessionStorage.removeItem('user');
-                
-                // Show success message
-                Swal.fire({
-                    title: 'Logged Out!',
-                    text: 'You have been successfully logged out.',
-                    icon: 'success',
-                    timer: 1500,
-                    showConfirmButton: false
-                }).then(() => {
-                    // Redirect to home page
-                    window.location.href = 'index.html';
-                });
+                try {
+                    // Import signOut function
+                    const { signOut } = await import("https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js");
+                    
+                    // Sign out from Firebase
+                    await signOut(window.firebaseAuth);
+                    
+                    // Clear any stored user data/session
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    
+                    // Show success message
+                    Swal.fire({
+                        title: 'Logged Out!',
+                        text: 'You have been successfully logged out.',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        // Redirect to home page
+                        window.location.href = 'index.html';
+                    });
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    Swal.fire('Error', 'Failed to logout. Please try again.', 'error');
+                }
             }
             });
         }
