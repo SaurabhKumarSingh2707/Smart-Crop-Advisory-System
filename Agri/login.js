@@ -52,7 +52,7 @@ login.addEventListener("click", function (event) {
             // Enhanced success alert
             Swal.fire({
                 title: '🎉 Login Successful!',
-                html: '<p style="font-size: 16px; color: #6b7280; margin: 15px 0;">Welcome back to AgriTech! 🌱<br>Redirecting to your dashboard...</p>',
+                html: '<p style="font-size: 16px; color: #6b7280; margin: 15px 0;">Welcome back to KrishiVaani! 🌱<br>Redirecting to your dashboard...</p>',
                 icon: 'success',
                 timer: 2500,
                 timerProgressBar: true,

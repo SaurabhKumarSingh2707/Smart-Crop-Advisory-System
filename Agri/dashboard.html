@@ -5,8 +5,8 @@
   <link rel="icon" type="image/png" href="images/logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-  <meta name="description" content="AgriTech - Empowering Agriculture Through Technology."/>
-  <title>AgriTech Dashboard</title>
+  <meta name="description" content="KrishiVaani - Empowering Agriculture Through Technology."/>
+  <title>KrishiVaani Dashboard</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -405,9 +405,9 @@
   <div class="header-nav-wrapper">
     <header>
       <div class="brand">
-        <img src="images/logo.png" alt="AgriTech logo" class="site-logo">
+        <img src="images/logo.png" alt="KrishiVaani logo" class="site-logo">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <h2>Welcome to AgriTech Frontend Platform</h2>
+        <h2>Welcome to KrishiVaani Platform</h2>
       </div>
       <div class="header-buttons">
         <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
@@ -738,9 +738,9 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-                 <img src="images/logo.png" alt="AgriTech logo" class="footer-logo">
-        <h3>AgriTech</h3>
-        <p>Frontend Agricultural Platform</p>
+                 <img src="images/logo.png" alt="KrishiVaani logo" class="footer-logo">
+        <h3>KrishiVaani</h3>
+        <p>Agricultural Technology Platform</p>
         <div class="social-media">
           <a href="https://instagram.com" target="_blank" aria-label="Follow us on Instagram">
             <i class="fab fa-instagram"></i>
@@ -773,11 +773,12 @@
         </div>
     </div>
     <p style="margin-top: 2rem; opacity: 0.8">
-      &copy; 2025 AgriTech | Frontend Agricultural Platform 🇮🇳
+      &copy; 2025 KrishiVaani | Agricultural Technology Platform 🇮🇳
     </p>
     </footer>
     <script src="main.js"></script>
   <script src="theme.js"></script>
+  <script src="logout-handler.js"></script>
 
     <button class="scroll-to-top" id="scrollToTop" title="Back to top">
     <i class="fas fa-arrow-up"></i>
@@ -853,7 +854,7 @@
       // User is logged in, update the welcome message
       const headerTitle = document.querySelector('header h2');
       if (headerTitle && user.email) {
-        headerTitle.textContent = `Welcome to AgriTech Frontend, ${user.email}!`;
+        headerTitle.textContent = `Welcome to KrishiVaani, ${user.email}!`;
       }
     });
 
@@ -861,48 +862,7 @@
     window.firebaseAuth = auth;
   </script>
   <script>
-        
-        async function showLogoutConfirmation() {
-            Swal.fire({
-            title: 'Confirm Logout',
-            text: 'Are you sure you want to logout?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, logout',
-            cancelButtonText: 'No'
-            }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    // Import signOut function
-                    const { signOut } = await import("https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js");
-                    
-                    // Sign out from Firebase
-                    await signOut(window.firebaseAuth);
-                    
-                    // Clear any stored user data/session
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    
-                    // Show success message
-                    Swal.fire({
-                        title: 'Logged Out!',
-                        text: 'You have been successfully logged out.',
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
-                    }).then(() => {
-                        // Redirect to home page
-                        window.location.href = 'index.html';
-                    });
-                } catch (error) {
-                    console.error('Logout error:', error);
-                    Swal.fire('Error', 'Failed to logout. Please try again.', 'error');
-                }
-            }
-            });
-        }
+        // Logout functionality is now handled by logout-handler.js
     </script>
 
 

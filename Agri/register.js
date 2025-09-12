@@ -30,7 +30,7 @@ register.addEventListener("click", function (event) {
     // Show loading animation
     Swal.fire({
         title: '🌱 Creating Your Account...',
-        html: '<p style="font-size: 16px; color: #6b7280;">Setting up your AgriTech profile</p>',
+        html: '<p style="font-size: 16px; color: #6b7280;">Setting up your KrishiVaani profile</p>',
         allowOutsideClick: false,
         allowEscapeKey: false,
         showConfirmButton: false,
@@ -48,7 +48,7 @@ register.addEventListener("click", function (event) {
             // Enhanced success alert
             Swal.fire({
                 title: '🎊 Account Created Successfully!',
-                html: '<p style="font-size: 16px; color: #6b7280; margin: 15px 0;">Welcome to AgriTech family! 🌾<br>Your account is ready. Let\'s get you logged in!</p>',
+                html: '<p style="font-size: 16px; color: #6b7280; margin: 15px 0;">Welcome to KrishiVaani family! 🌾<br>Your account is ready. Let\'s get you logged in!</p>',
                 icon: 'success',
                 confirmButtonText: '🚀 Login Now',
                 confirmButtonColor: '#22c55e',
