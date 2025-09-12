@@ -355,7 +355,7 @@
     <nav>
       <ul>
         <li>
-          <a href="Crop Recommendation/crop-recommendation.html">🌱 Crop Recommendation</a>
+          <a href="crop-recommendation.html">🌱 Crop Recommendation</a>
         </li>
         <li>
           <a href="crop-yield.html">📊 Yield Prediction</a>
@@ -759,9 +759,9 @@
             cancelButtonText: 'No'
             }).then((result) => {
             if (result.isConfirmed) {
-                // Clear any session data
-                localStorage.clear();
-                sessionStorage.clear();
+                // Clear any stored user data/session
+                localStorage.removeItem('user');
+                sessionStorage.removeItem('user');
                 
                 // Show success message
                 Swal.fire({
