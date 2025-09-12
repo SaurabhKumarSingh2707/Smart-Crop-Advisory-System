@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatInput = document.getElementById('chat-input');
   const sendBtn = document.getElementById('send-button');
 
-  const API_KEY = 'GEMINI_API_KEY'; // get api key from https://ai.google.dev/
+  const API_KEY = 'AIzaSyCKC7sHvXik2VcNGfSozHX1uz83mzK7fts'; // get api key from https://ai.google.dev/
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`;
   
   const systemMsg = {
