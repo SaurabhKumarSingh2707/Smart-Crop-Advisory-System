@@ -1,4 +1,4 @@
-﻿#  AgriTech Frontend - Pure HTML/CSS/JS Version
+﻿#  AgroHive - Pure HTML/CSS/JS Version
 
 A frontend-only version of the AgriTech web application built with pure HTML, CSS, and JavaScript. This version focuses on the user interface and client-side functionality without any backend dependencies.
 
@@ -85,3 +85,4 @@ AgriTech-Frontend/
 Open source - Feel free to use and modify!
 
 **Enjoy exploring AgriTech Frontend! **
+
