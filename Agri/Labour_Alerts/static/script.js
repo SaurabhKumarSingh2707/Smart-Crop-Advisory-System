@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tab Switching Logic
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
+            // If alerts tab is clicked, redirect to labour-alerts.html
+            if (tab.dataset.tab === 'alerts') {
+                window.location.href = '../../labour-alerts.html';
+                return;
+            }
+            
             tabs.forEach(t => t.classList.remove('active'));
             contents.forEach(c => c.classList.remove('active'));
 
